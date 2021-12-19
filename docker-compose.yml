@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web-app:
+    build: ./web-app
+    command: npm run build # just build the web app, comment out for dev server
+    ports:
+      - 3000:3000
+
+  # this is just if you want to serve the staic site
+  nginx:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./web-app/dist:/usr/share/nginx/html # mount the web app's build output
+    depends_on:
+      - web-app # web-app must be build before server can serve it
