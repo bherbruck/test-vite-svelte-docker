@@ -6,6 +6,8 @@ services:
     command: npm run build # just build the web app, comment out for dev server
     ports:
       - 3000:3000
+    volumes:
+      - ./web-app/dist:/app/dist
 
   # this is just if you want to serve the staic site
   nginx:
